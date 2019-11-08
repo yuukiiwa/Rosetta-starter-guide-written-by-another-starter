@@ -29,8 +29,7 @@ then run the clean_pdb.py program with
 ```
 cd ./rosetta_bin_mac_2019.35.60890_bundle/tools/protein_tools/scripts/clean_pdb.py 2rh1_ISOLATED.pdb A
 ```
-note that the name [rosetta_bin_mac_2019.35.60890_bundle] differs from version to version, and you should type in the name of the rosetta you downloaded.
-4. after running, here's the command-line output
+note that the name [rosetta_bin_mac_2019.35.60890_bundle] differs from version to version, and you should type in the name of the rosetta you downloaded. Here's the command-line output
 ```
 Found existing PDB file at 2rh1_ISOLATED.pdb
 2rh1_ISOLATED A   282 --- --- MOD --- OK
