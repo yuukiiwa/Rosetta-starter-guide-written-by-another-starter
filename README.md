@@ -1,7 +1,61 @@
 # Hi fellow starter (clueless people according to Dawn)!
 Rosetta is now downloaded and compiled on the Mac in L502, which also has a PYMOL installed. To access Rosetta, get into the terminal (aka. the black square next to the trash can), then type
 ```
-cd Dowloads/rosetta_bin_mac_2019.35.60890_bundle/
+>cd Dowloads/rosetta_bin_mac_2019.35.60890_bundle/
+```
+To determine the exact location of the Rosetta Directory
+```
+>pwd
+/Users/awlab/Downloads/rosetta_bin_mac_2019.35.60890_bundle <-where it is on the L502 Mac
+```
+## AbPredict (November 11th, 2019)
+get into the AbPredict directory and open the tutorial from the rosetta directory
+```
+>cd demos/tutorials/AbPredict/
+>cat AbPredict.md
+```
+Here is the line they ask you to run within the directory:
+```
+<Rosetta_Directory>/main/source/bin/rosetta_scripts.default.linuxgccrelease @flags -parser:script_vars entry_H1_H2=2IBZX entry_L1_L2=3DSFL entry_H3=3V4UH entry_L3=1LO2L  sequence=IKMTQSPSSMYASLGERVTITCKASQDIRKYLNWYQQKPWKSPKTLIYYATSLADGVPSRFSGSGSGQDYSLTISSLESDDTATYYCLQHGESPYTFGGGTKLEIQLQQSGAELVRPGALVKLSCKASGFNIKDYYMHWVKQRPEQGLEWIGLIDPENGNTIYDPKFQGKASITADTSSNTAYLQLSSLTSEDTAVYYCARDNSYYFDYWGQGTTLTVS 
+```
+If you run it right away like this:
+```
+/Users/awlab/Downloads/rosetta_bin_mac_2019.35.60890_bundle/main/source/bin/rosetta_scripts.default.linuxgccrelease @flags -parser:script_vars entry_H1_H2=2IBZX entry_L1_L2=3DSFL entry_H3=3V4UH entry_L3=1LO2L  sequence=IKMTQSPSSMYASLGERVTITCKASQDIRKYLNWYQQKPWKSPKTLIYYATSLADGVPSRFSGSGSGQDYSLTISSLESDDTATYYCLQHGESPYTFGGGTKLEIQLQQSGAELVRPGALVKLSCKASGFNIKDYYMHWVKQRPEQGLEWIGLIDPENGNTIYDPKFQGKASITADTSSNTAYLQLSSLTSEDTAVYYCARDNSYYFDYWGQGTTLTVS
+```
+it will give you an error, saying:
+```
+ERROR:: Exit from: src/protocols/splice/RBInMover.cc line: 155
+```
+because the following directories are not there, like we don't have a Gideon in our lab.
+```
+/home/labs/fleishman/gideonla/RBOut/rb.db
+```
+find a rb.db from Finder copy it to the AbPredict directory, then get into the xml file and change the line indicating this location:
+```
+>nano AbPredict_xsd.xml
+#change /home/labs/fleishman/gideonla/RBOut/rb.db to rb.db here
+<RBIn name="rb_transform" rigid_body_dbase="/home/labs/fleishman/gideonla/RBOut/rb.db" from_entry="1" to_entry="1340" randomize="true"/>
+Here is what it looks like after changing:
+<RBIn name="rb_transform" rigid_body_dbase="rb.db" from_entry="1" to_entry="1340" randomize="true"/>
+```
+then unzip the 2BRR.ppk_ideal.pdb.gz file by
+```
+>gunzip 2BRR.ppk_ideal.pdb.gz
+```
+make a new directory called pdb and replicate 2BRR.ppk_ideal.pdb to pdb
+```
+>mkdir pdb
+>mv 2BRR.ppk_ideal.pdb pdb
+```
+Then, you're ready to run this tutorial provided by the Rosetta team:
+```
+>/Users/awlab/Downloads/rosetta_bin_mac_2019.35.60890_bundle/main/source/bin/rosetta_scripts.default.linuxgccrelease @flags -parser:script_vars entry_H1_H2=2IBZX entry_L1_L2=3DSFL entry_H3=3V4UH entry_L3=1LO2L  sequence=IKMTQSPSSMYASLGERVTITCKASQDIRKYLNWYQQKPWKSPKTLIYYATSLADGVPSRFSGSGSGQDYSLTISSLESDDTATYYCLQHGESPYTFGGGTKLEIQLQQSGAELVRPGALVKLSCKASGFNIKDYYMHWVKQRPEQGLEWIGLIDPENGNTIYDPKFQGKASITADTSSNTAYLQLSSLTSEDTAVYYCARDNSYYFDYWGQGTTLTVS
+```
+after running get into your pdb directory, and you'll see a new pdb file called 2BRR.ppk_ideal_0001.pdb in addition to the original 2BRR.ppk_ideal.pdb:
+```
+>cd pdb
+>ls
+2BRR.ppk_ideal.pdb	2BRR.ppk_ideal_0001.pdb
 ```
 ## clean pdb (November 7th, 2019)
 1. download the pdb file from https://www.rcsb.org/structure/2RH1, and duplicate it called 2rh1_ISOLATED.pdb
