@@ -6,7 +6,7 @@ Rosetta is now downloaded and compiled on the Mac in L502, which also has a PYMO
 To determine the exact location of the Rosetta Directory
 ```
 >pwd
-/Users/awlab/Downloads/rosetta_bin_mac_2019.35.60890_bundle <-where it is on the L502 Mac
+/Users/awlab/Downloads/rosetta_bin_mac_2019.35.60890_bundle <-where it locates on the L502 Mac
 ```
 ## AbPredict (November 11th, 2019)
 get into the AbPredict directory and open the tutorial from the rosetta directory
